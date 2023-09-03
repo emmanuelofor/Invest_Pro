@@ -1,10 +1,23 @@
-{% extends 'index.html' %}
+{% extends "index.html" %}
 
 {% block content %}
-    <h2>List of Investments</h2>
-    <ul>
-        {% for investment in investments %}
-            <li>{{ investment.name }} - {{ investment.type }} - {{ investment.description }} - {{ investment.risk_level }}</li>
-        {% endfor %}
-    </ul>
+<h2>List of Investments</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Risk Level</th>
+    </tr>
+    {% for investment in investments %}
+    <tr>
+        <td>{{ investment.name }}</td>
+        <td>{{ investment.type }}</td>
+        <td>{{ investment.description }}</td>
+        <td>{{ investment.risk_level }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
 {% endblock %}

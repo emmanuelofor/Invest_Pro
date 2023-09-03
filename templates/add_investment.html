@@ -1,12 +1,27 @@
-{% extends 'index.html' %}
+{% extends "index.html" %}
 
 {% block content %}
-    <h2>Add Investment</h2>
-    <form action="/add_investment" method="post">
-        <label>Name: <input type="text" name="name"></label><br>
-        <label>Type: <input type="text" name="type"></label><br>
-        <label>Description: <input type="text" name="description"></label><br>
-        <label>Risk Level: <input type="text" name="risk_level"></label><br>
-        <input type="submit" value="Add Investment">
-    </form>
+<h2>Add New Investment</h2>
+
+<form action="/add_investment" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <br>
+    
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type">
+    <br>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description">
+    <br>
+
+    <label for="risk_level">Risk Level:</label>
+    <input type="text" id="risk_level" name="risk_level">
+    <br>
+
+    <input type="submit" value="Add Investment">
+</form>
+
 {% endblock %}
+
