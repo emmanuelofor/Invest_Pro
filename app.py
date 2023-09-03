@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect
+from flask import Flask, request, jsonify, render_template, redirect, flash, url_for
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from flask_migrate import Migrate
 from models import db, Investment, UserPortfolio, Resource, User  
@@ -77,66 +77,58 @@ def confirm_email(token):
 @app.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
     if request.method == 'POST':
-        email = request.form.get('email')
+        email = request.form['email']
         user = User.query.filter_by(email=email).first()
-        
         if user:
-            # Generate a token
-            token = s.dumps(email, salt='reset-password')
-            
-            # Send an email
-            msg = Message('Password Reset Request', sender='noreply@investpro.com', recipients=[email])
-            msg.body = f'Reset your password by clicking this link: http://127.0.0.1:5000/reset_password/{token}'
+            token = s.dumps(user.email, salt='email-confirm-key')
+            msg = Message('Reset Password', sender='noreply@example.com', recipients=[user.email])
+            msg.body = f"Click here to reset your password: {url_for('reset_password', token=token, _external=True)}"
             mail.send(msg)
-            
-            return 'An email for password reset has been sent.'
-        
-        else:
-            return 'Email not found.'
-        
+            flash('Check your email for the instructions to reset your password')
     return render_template('reset_password_request.html')
-
 
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     try:
-        email = s.loads(token, salt='reset-password', max_age=3600)
+        email = s.loads(token, salt='email-confirm-key', max_age=86400)
     except:
-        return 'The reset password link is invalid or has expired.'
-    
-    user = User.query.filter_by(email=email).first()
-    
-    if request.method == 'POST' and user:
-        new_password = request.form.get('new_password')
-        user.set_password(new_password)
-        db.session.commit()
-        
-        return 'Password has been updated!'
-        
+        flash('The reset link is invalid or has expired.')
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        new_password = request.form['new_password']
+        confirm_password = request.form['confirm_password']
+
+        if new_password == confirm_password:
+            user = User.query.filter_by(email=email).first()
+            user.password_hash = generate_password_hash(new_password)
+            db.session.commit()
+            flash('Your password has been updated!')
+            return redirect(url_for('login'))
+        else:
+            flash('Passwords do not match.')
     return render_template('reset_password.html')
 
 
 # New route for login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
     if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        user = User.query.filter_by(username=username).first()
-        if user and user.check_password(password):
+        email = request.form['email']
+        password = request.form['password']
+        user = User.query.filter_by(email=email).first()
+        if user and check_password_hash(user.password_hash, password):
             login_user(user)
-            return redirect(url_for('home'))
-        flash('Invalid username or password')
+            return redirect(url_for('index'))
+        flash('Invalid email or password')
     return render_template('login.html')
 
-# New route for logout
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
+
 
 @app.route('/add_investment', methods=['GET', 'POST'])
 def add_investment():
