@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request, jsonify, render_template, redirect
 from flask_migrate import Migrate
+from models import db, Investment, UserPortfolio, Resource  # Import db and models
 
 app = Flask(__name__)
 
@@ -8,49 +8,33 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///investpro.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-class Investment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), index=True)
-    type = db.Column(db.String(64))
-    description = db.Column(db.String(256))
-    risk_level = db.Column(db.String(64))
-
-class UserPortfolio(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    investment_id = db.Column(db.Integer, db.ForeignKey('investment.id'))
-    amount = db.Column(db.Float)
-
-class Resource(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(64))
-    content = db.Column(db.String(256))
-    link = db.Column(db.String(128))
+db.init_app(app)  # Initialize the database
+migrate = Migrate(app, db)  # Apply Migrations
 
 @app.route('/')
 def home():
     return "Welcome to InvestPro!"
 
-@app.route('/add_investment', methods=['POST'])
+@app.route('/add_investment', methods=['GET', 'POST'])
 def add_investment():
-    name = request.json.get('name')
-    type = request.json.get('type')
-    description = request.json.get('description')
-    risk_level = request.json.get('risk_level')
+    if request.method == 'POST':
+        name = request.form.get('name')
+        type = request.form.get('type')
+        description = request.form.get('description')
+        risk_level = request.form.get('risk_level')
 
-    new_investment = Investment(name=name, type=type, description=description, risk_level=risk_level)
-    db.session.add(new_investment)
-    db.session.commit()
+        new_investment = Investment(name=name, type=type, description=description, risk_level=risk_level)
+        db.session.add(new_investment)
+        db.session.commit()
 
-    return jsonify({"message": "Investment added", "investment_id": new_investment.id})
+        return redirect('/list_investments')
+
+    return render_template('add_investment.html')
 
 @app.route('/list_investments', methods=['GET'])
 def list_investments():
     investments = Investment.query.all()
-    investments_list = [{"name": i.name, "type": i.type, "description": i.description, "risk_level": i.risk_level} for i in investments]
-    return jsonify(investments_list)
+    return render_template('list_investments.html', investments=investments)
 
 @app.route('/add_portfolio', methods=['POST'])
 def add_portfolio():

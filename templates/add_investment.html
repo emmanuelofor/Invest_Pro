@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2>Add Investment</h2>
+    <form action="/add_investment" method="post">
+        <label>Name: <input type="text" name="name"></label><br>
+        <label>Type: <input type="text" name="type"></label><br>
+        <label>Description: <input type="text" name="description"></label><br>
+        <label>Risk Level: <input type="text" name="risk_level"></label><br>
+        <input type="submit" value="Add Investment">
+    </form>
+{% endblock %}

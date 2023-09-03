@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2>List of Investments</h2>
+    <ul>
+        {% for investment in investments %}
+            <li>{{ investment.name }} - {{ investment.type }} - {{ investment.description }} - {{ investment.risk_level }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
