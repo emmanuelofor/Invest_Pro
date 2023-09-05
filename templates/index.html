@@ -1,21 +1,639 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>InvestPro</title>
-</head>
-<body>
-    <h1>Welcome to InvestPro!</h1>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/add_investment">Add Investment</a></li>
-            <li><a href="/list_investments">List Investments</a></li>
-        </ul>
-    </nav>
+{% include "header.html" %}
 
-    {% block content %}
+{% block content %}
 
-    {% endblock %}
+<!-- Banner -->
+<div class="banner-area banner-bg-one">
+    <div class="banner-shape">
+        <img src="{{ url_for('static',
+            filename='assets/images/banner-shape1.jpg') }}" alt="Shape">
+    </div>
+    <div class="banner-slider owl-theme owl-carousel">
 
-</body>
-</html>
+        <div class="banner-item">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="banner-content">
+                            <span>Your Financial Status Is Good Hands</span>
+                            <h1>Our Company Provide Best Financial Solutions</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do e et dolore magna
+                                aliqua. Quis ipsum suspendisse ultrices gravida.
+                                Risus commodo </p>
+                            <div class="banner-btn-area">
+                                <a class="banner-btn common-btn" href="">
+                                    Get Started
+                                    <span></span>
+                                </a>
+                                <a class="common-btn" href="">
+                                    Contact Us
+                                    <span></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="banner-slider-img">
+                            <img src="{{ url_for('static',
+                                filename='assets/images/banner-main1.png') }}"
+                                alt="Banner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="banner-item">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="banner-content">
+                            <span>Your Financial Status Is Good Hands</span>
+                            <h1>Your First Steps Into The Financial Markets
+                                Investment</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do e et dolore magna
+                                aliqua. Quis ipsum suspendisse ultrices gravida.
+                                Risus commodo </p>
+                            <div class="banner-btn-area">
+                                <a class="banner-btn common-btn" href="">
+                                    Get Started
+                                    <span></span>
+                                </a>
+                                <a class="common-btn" href="">
+                                    Contact Us
+                                    <span></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="banner-slider-img two">
+                            <img src="{{ url_for('static',
+                                filename='assets/images/banner-main2.png') }}"
+                                alt="Banner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="banner-item">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="banner-content">
+                            <span>Your Investment Status Is Good in Hands</span>
+                            <h1>InvestPro Will Give Business Opportunity To You</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do e et dolore magna
+                                aliqua. Quis ipsum suspendisse ultrices gravida.
+                                Risus commodo </p>
+                            <div class="banner-btn-area">
+                                <a class="banner-btn common-btn" href="">
+                                    Get Started
+                                    <span></span>
+                                </a>
+                                <a class="common-btn" href="">
+                                    Contact Us
+                                    <span></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="banner-slider-img three">
+                            <img src="{{ url_for('static',
+                                filename='assets/images/banner-main3.png') }}"
+                                alt="Banner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- End Banner -->
+
+<!-- About -->
+<div class="about-area ptb-100">
+    <div class="about-shape">
+        <img src="{{ url_for('static',
+            filename='assets/images/about-shape1.png') }}" alt="Shape">
+        <img src="{{ url_for('static',
+            filename='assets/images/about-shape2.png') }}" alt="Shape">
+        <img src="{{ url_for('static',
+            filename='assets/images/about-shape3.png') }}" alt="Shape">
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-5 left-padding">
+                <div class="about-img">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <div class="one">
+                                <img src="{{ url_for('static',
+                                    filename='assets/images/about1.jpg') }}"
+                                    alt="About">
+                                <img src="{{ url_for('static',
+                                    filename='assets/images/about-shape4.png')
+                                    }}" alt="Shape">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="three">
+                                <img src="{{ url_for('static',
+                                    filename='assets/images/about3.jpg') }}"
+                                    alt="About">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="two">
+                                <img src="{{ url_for('static',
+                                    filename='assets/images/about2.jpg') }}"
+                                    alt="About">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="about-content">
+                    <div class="section-title">
+                        <span class="sub-title">About Company</span>
+                        <h2>We Help Our Clients To Achieve Their Desire Goals</h2>
+                    </div>
+                    <div class="middle">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Quis ipsum suspendisse ultrices
+                            gravida. Risus commodo viverra </span>
+                        <p>It is a long established fact that a reader will be
+                            distracted by the readable content of a page when
+                            looking at its layout. The point of using Lorem
+                            Ipsum is that it has a more-or-less normal
+                            distribution of letters, as opposed to using
+                            'Content here, content here.</p>
+                    </div>
+                    <div class="bottom">
+                        <ul>
+                            <li>
+                                <i class="flaticon-workflow"></i>
+                                <h3>
+                                    <span class="odometer" data-count="462">00</span>
+                                </h3>
+                                <p>Successful Projects</p>
+                            </li>
+                            <li>
+                                <i class="flaticon-project"></i>
+                                <h3>
+                                    <span class="odometer" data-count="362">00</span>
+                                </h3>
+                                <p>Running Projects</p>
+                            </li>
+                            <li>
+                                <i class="flaticon-team"></i>
+                                <h3>
+                                    <span class="odometer" data-count="562">00</span>
+                                </h3>
+                                <p>Skilled Members</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="years">
+                        <ul class="align-items-center">
+                            <li>
+                                <div class="years-inner">
+                                    <span>5</span>
+                                    <h4>Years Of Experience</h4>
+                                    <i class="flaticon-handshake"></i>
+                                    <img src="{{ url_for('static',
+                                        filename='assets/images/about-shape5.png')
+                                        }}" alt="Shape">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End About -->
+
+
+<!-- Services -->
+<section class="services-area pt-100 pb-70">
+    <div class="services-shape">
+        <img src="{{ url_for('static',
+            filename='assets/images/services-shape1.png') }}" alt="Shape">
+        <img src="{{ url_for('static',
+            filename='assets/images/services-shape2.png') }}" alt="Shape">
+    </div>
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">What Services We Provide</span>
+            <h2>Get Exceptional Finon Service For Growth</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                ipsum suspendisse ultrices gravida. Risus commodo</p>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6 col-lg-4">
+                <div class="services-item">
+                    <i class="flaticon-deposit icon"></i>
+                    <h3>
+                        <a href="">Invest Planning</a>
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore dolore magna</p>
+                    <div class="services-btn">
+                        <i class='bx bx-right-arrow-alt'></i>
+                        <a href="">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+                <div class="services-item">
+                    <i class="flaticon-loan icon"></i>
+                    <h3>
+                        <a href="">Financial Consultancy</a>
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore dolore magna</p>
+                    <div class="services-btn">
+                        <i class='bx bx-right-arrow-alt'></i>
+                        <a href="">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6 col-lg-4">
+                <div class="services-item">
+                    <i class="flaticon-consulting icon"></i>
+                    <h3>
+                        <a href="">Consultancy</a>
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore dolore magna</p>
+                    <div class="services-btn">
+                        <i class='bx bx-right-arrow-alt'></i>
+                        <a href="">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Services -->
+
+
+
+<!-- Book -->
+<div class="book-area ptb-100">
+    <div class="container">
+        <div class="book-content">
+            <div class="book-shape">
+                <img src="{{ url_for('static',
+                    filename='assets/images/book-shape1.png') }}" alt="Shape">
+                <img src="{{ url_for('static',
+                    filename='assets/images/book-shape2.png') }}" alt="Shape">
+            </div>
+            <h2>Are You Ready? Book Appointment Now</h2>
+            <p>Get your Quote or Call <a href="tel:548157455">548157455 / ... /
+                    ...</a></p>
+            <a class="common-btn" href="#">
+                Read More
+                <span></span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- End Book -->
+
+
+<!-- Touch -->
+<section class="touch-area pt-100 pb-70">
+    <div class="touch-shape">
+        <img src="{{ url_for('static',
+            filename='assets/images/touch-shape1.png') }}" alt="Shape">
+        <img src="{{ url_for('static',
+            filename='assets/images/touch-shape2.png') }}" alt="Shape">
+    </div>
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+                <div class="touch-content">
+                    <div class="section-title">
+                        <span class="sub-title">Get In Touch</span>
+                        <h2>Request A Call-Back</h2>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control"
+                                        placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control"
+                                        placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control"
+                                        placeholder="Phone">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control"
+                                        placeholder="Subject">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <textarea id="your-message"
+                                        class="form-control" rows="6"
+                                        placeholder="Message"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn common-btn">
+                                    Send Message
+                                    <span></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="touch-img">
+                    <img src="{{ url_for('static',
+                        filename='assets/images/touch-main.jpg') }}"
+                        alt="Touch">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Touch -->
+
+
+<!-- Team -->
+<section class="team-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Expert Team</span>
+            <h2>We Have An Exclusive Team</h2>
+        </div>
+        <div class="team-slider owl-theme owl-carousel">
+
+            <div class="team-item">
+                <div class="top">
+                    <img src="{{ url_for('static',
+                        filename='assets/images/team1.jpg') }}" alt="Team">
+                    <ul>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-facebook'></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-twitter'></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-pinterest-alt'></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-linkedin'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom">
+                    <h3>Emmanuel Ofori</h3>
+                    <span>CEO of Company</span>
+                    <img src="{{ url_for('static',
+                        filename='assets/images/team-shape1.png') }}"
+                        alt="Shape">
+                </div>
+            </div>
+
+            <div class="team-item">
+                <div class="top">
+                    <img src="{{ url_for('static',
+                        filename='assets/images/team2.jpg') }}" alt="Team">
+                    <ul>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-facebook'></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-twitter'></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-pinterest-alt'></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-linkedin'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom">
+                    <h3>Effah Bright</h3>
+                    <span>Manager</span>
+                    <img src="{{ url_for('static',
+                        filename='assets/images/team-shape1.png') }}"
+                        alt="Shape">
+                </div>
+            </div>
+
+            <div class="team-item">
+                <div class="top">
+                    <img src="{{ url_for('static',
+                        filename='assets/images/team3.jpg') }}" alt="Team">
+                    <ul>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-facebook'></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-twitter'></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-pinterest-alt'></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class='bx bxl-linkedin'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom">
+                    <h3>Dacosta Agyei</h3>
+                    <span>Consultant</span>
+                    <img src="{{ url_for('static',
+                        filename='assets/images/team-shape1.png') }}"
+                        alt="Shape">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Team -->
+
+<!-- FAQ -->
+<section class="faq-area pt-100 pb-70">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <span class="sub-title">InvestPro! FAQ</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua ultrices grad </p>
+                </div>
+                <div class="faq-item">
+                    <ul class="accordion">
+                        <li>
+                            <a>
+                                What kind of financial consultancy you need
+                                <i class='bx bx-plus'></i>
+                                <i class="bx bx-minus two"></i>
+                            </a>
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua
+                                ultrices grad </p>
+                        </li>
+                        <li>
+                            <a>
+                                How we help you for your business
+                                <i class='bx bx-plus'></i>
+                                <i class="bx bx-minus two"></i>
+                            </a>
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua
+                                ultrices grad </p>
+                        </li>
+                        <li>
+                            <a>
+                                What is Firewall and why it is used?
+                                <i class='bx bx-plus'></i>
+                                <i class="bx bx-minus two"></i>
+                            </a>
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua
+                                ultrices grad </p>
+                        </li>
+                        <li>
+                            <a>
+                                What steps will you take to remove risk of
+                                finance
+                                <i class='bx bx-plus'></i>
+                                <i class="bx bx-minus two"></i>
+                            </a>
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua
+                                ultrices grad </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="faq-img">
+                    <img src="{{ url_for('static',
+                        filename='assets/images/faq-main.png') }}" alt="FAQ">
+                    <img src="{{ url_for('static',
+                        filename='assets/images/faq-shape.png') }}" alt="Shape">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End FAQ -->
+
+      <!-- Testimonials -->
+        <section class="testimonials-area pt-100">
+            <div class="container">
+                <div class="section-title">
+                    <span class="sub-title">Testimonials</span>
+                    <h2>What Our Clients Says</h2>
+                </div>
+                <div class="testimonials-slider owl-theme owl-carousel">
+
+                    <div class="testimonials-item">
+                        <img src="{{ url_for('static',
+                        filename='assets/images/testimonials1.png') }}" alt="Testimonial">
+                        <div class="inner">
+                            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum </h2>
+                            <h3>Jiniya Lisa</h3>
+                            <span>CEO of Finance & Banking</span>
+                            <i class='bx bxs-quote-alt-left bx-flip-horizontal'></i>
+                        </div>
+                    </div>
+
+                    <div class="testimonials-item">
+                        <img src="{{ url_for('static',
+                        filename='assets/images/testimonials2.png') }}" alt="Testimonial">
+                        <div class="inner">
+                            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum </h2>
+                            <h3>Tom Henry</h3>
+                            <span>Manager</span>
+                            <i class='bx bxs-quote-alt-left bx-flip-horizontal'></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- End Testimonials -->
+{% endblock %}
+
+{% include "footer.html" %}
