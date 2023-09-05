@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify, render_template, redirect, flash, url
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from flask_migrate import Migrate
 from models import db, Investment, UserPortfolio, Resource, User  
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Mail, Message
 from itsdangerous import URLSafeTimedSerializer
 
