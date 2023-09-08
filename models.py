@@ -33,6 +33,21 @@ class UserPortfolio(db.Model):
     investment_id = db.Column(db.Integer, db.ForeignKey('investment.id'))
     amount = db.Column(db.Float)
 
+class Opportunity(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), index=True)
+    description = db.Column(db.String(256))
+    type = db.Column(db.String(64))
+    expected_return = db.Column(db.Float)
+    risk_level = db.Column(db.String(64))
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(80), nullable=False)
+    subject = db.Column(db.String(100), nullable=False)
+    message = db.Column(db.String(1000), nullable=False)
+
 class FAQ(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(500), nullable=False)

@@ -3,7 +3,7 @@ from flask_login import LoginManager, login_user, current_user, logout_user, log
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import Configuration
 from database import db
-from models import User, Investment, UserPortfolio, FAQ, Testimonial
+from models import User, Investment, UserPortfolio, FAQ, Testimonial, Opportunity, Contact
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -47,6 +47,39 @@ def add_investment():
         return redirect(url_for('list_investments'))
 
     return render_template('add_investment.html')
+
+@app.route('/portfolio_tracking')
+@login_required
+def portfolio_tracking():
+    user_portfolios = UserPortfolio.query.filter_by(user_id=current_user.id).all()
+    return render_template('portfolio_tracking.html', portfolios=user_portfolios)
+
+@app.route('/opportunities')
+def opportunities():
+    opportunities = Opportunity.query.all()
+    return render_template('opportunities.html', opportunities=opportunities)
+
+@app.route('/contact')
+def contact():
+    contacts = Contact.query.all()
+    return render_template('contact.html', contacts=contacts)
+
+@app.route('/submit_contact', methods=['POST'])
+def submit_contact():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
+
+        new_contact = Contact(name=name, email=email, subject=subject, message=message)
+
+        db.session.add(new_contact)
+        db.session.commit()
+
+        return redirect(url_for('contact'))
+
+    return redirect(url_for('contact'))
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():

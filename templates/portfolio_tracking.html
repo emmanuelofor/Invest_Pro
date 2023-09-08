@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portfolio Tracking</title>
+  <!-- your CSS and JS links -->
+</head>
+<body>
+
+  <!-- your header and navigation here -->
+
+  <h1>Your Portfolio</h1>
+
+  <ul>
+    {% for portfolio in portfolios %}
+      <li>
+        Investment Name: {{ portfolio.investment.name }} <br>
+        Amount: {{ portfolio.amount }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- your footer here -->
+
+</body>
+</html>
