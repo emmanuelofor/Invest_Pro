@@ -4,9 +4,6 @@ InvestPro is an online investment platform designed to empower individuals to ma
 
 InvestPro aims to be a reliable partner in the financial journey of individual investors, providing them with the tools and insights needed to make well-informed investment decisions and work towards financial success.
 
-[Website Status](https://img.shields.io/website?url=https://www.yourwebsite.com)](https://www.yourwebsite.com)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
 Welcome to [InvestPro](https://investpro.onrender.com/#)
 
 ## Table of Contents
@@ -139,4 +136,4 @@ This project is licensed under the MIT License - see the [MIT](LICENSE) file for
 
 ---
 
-Thank you for visiting [InvestPro](https://investpro.onrender.com/#)). We hope you find our website valuable and user-friendly. If you have any questions or feedback, please don't hesitate to [contact us](effahbright.eb@gmail.com).
+Thank you for visiting [InvestPro](https://investpro.onrender.com/#). We hope you find our website valuable and user-friendly. If you have any questions or feedback, please don't hesitate to [contact us](effahbright.eb@gmail.com).
