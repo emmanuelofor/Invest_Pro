@@ -17,8 +17,6 @@ Welcome to [InvestPro](https://investpro.onrender.com/#)
 
 ## About
 
-[Your Website Name](https://www.yourwebsite.com) is a # About InvestPro
-
 Welcome to InvestPro, your all-in-one platform for financial empowerment, investment management, and entrepreneurial opportunities.
 
 ### Our Mission
