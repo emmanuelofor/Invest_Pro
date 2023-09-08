@@ -6,6 +6,8 @@ InvestPro aims to be a reliable partner in the financial journey of individual i
 
 Welcome to [InvestPro](https://investpro.onrender.com/#)
 
+![image](https://github.com/emmanuelofor/Invest_Pro/assets/99838742/ba21a5a2-d25a-4e89-93a0-20551e6eb98e)
+
 ## Table of Contents
 
 - [About](#about)
