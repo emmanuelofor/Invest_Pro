@@ -1,22 +1,21 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
-
-db = SQLAlchemy()
+from datetime import datetime
+from werkzeug.security import check_password_hash  
+from database import db
 
 
 class User(UserMixin, db.Model):
+    # Defining the table columns for the User model
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(128), unique=True, nullable=False)
-    email_confirmed = db.Column(db.Boolean, default=False)
-    password_hash = db.Column(db.String(128), nullable=False)
-
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+    email = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(120), nullable=False)
+    first_name = db.Column(db.String(80), nullable=False)
+    last_name = db.Column(db.String(80), nullable=False)
+    date_of_birth = db.Column(db.Date, nullable=False)
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return check_password_hash(self.password_hash, password)  # Checking the hashed password
 
 class Investment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,14 +23,23 @@ class Investment(db.Model):
     type = db.Column(db.String(64))
     description = db.Column(db.String(256))
     risk_level = db.Column(db.String(64))
+    amount = db.Column(db.Float)
+    date = db.Column(db.Date)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class UserPortfolio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     investment_id = db.Column(db.Integer, db.ForeignKey('investment.id'))
     amount = db.Column(db.Float)
 
-class Resource(db.Model):
+class FAQ(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(64))
-    content = db.Column(db.String(256))
-    link = db.Column(db.String(128))
+    question = db.Column(db.String(500), nullable=False)
+    answer = db.Column(db.String(1000), nullable=False)
+
+class Testimonial(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(1000), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)

@@ -1,23 +1,38 @@
-{% extends "index.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InvestPro - List Investments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+</head>
+<body>
 
-{% block content %}
-<h2>List of Investments</h2>
+    <h1>List of Investments</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Investment Name</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for investment in investments %}
+                <tr>
+                    <td>{{ investment.name }}</td>
+                    <td>${{ investment.amount }}</td>
+                    <td>{{ investment.date }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_investment', id=investment.id) }}">Edit</a> |
+                        <a href="{{ url_for('delete_investment', id=investment.id) }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Risk Level</th>
-    </tr>
-    {% for investment in investments %}
-    <tr>
-        <td>{{ investment.name }}</td>
-        <td>{{ investment.type }}</td>
-        <td>{{ investment.description }}</td>
-        <td>{{ investment.risk_level }}</td>
-    </tr>
-    {% endfor %}
-</table>
+    <a href="{{ url_for('add_investment') }}">Add New Investment</a>
 
-{% endblock %}
+</body>
+</html>
