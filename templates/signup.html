@@ -1,66 +1,93 @@
-<!DOCTYPE html>
-<html>
-   <head>
-      <title>InvestPro - Create Your Account</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+{% include "header.html" %}
 
-      <!-- Font Icons Link -->
-      <script src="https://kit.fontawesome.com/d4d5bc1410.js" crossorigin="anonymous"></script> 
-   </head>
-   <body>
-
-      <div class="container">
-         <div class="form-box">
-            <h1 id="title">Create Your Account</h1>
-
-            <form action="{{ url_for('signup') }}" method="post">
-               <div class="input-group">
-
-                  <div class="input-field">
-                        <label for="username"></label>
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" id="username" name="username" placeholder="Username" required>
-                  </div>
-
-                  <div class="input-field">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="email" id="email" name="email" placeholder="Email" required>
-                  </div>
-
-                  <div class="input-field">
-                     <i class="fa-solid fa-lock-open"></i>
-                     <input type="password" id="password" name="password" placeholder="Password" required>
-                  </div>
-
-                  <div class="input-field">
-                     <i class="fa-solid fa-lock"></i>
-                     <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
-                  </div>
-
-                  <p>Already have an account? <a href="{{ url_for('login') }}">Sign In</a></p>
-
-               </div>
-
-               <div class="btn-field">
-                  <button class="btn" type="submit">Sign Up</button>
-               </div>
-            </form>
-            
-            {% if error %}
-               <p class="error">{{ error }}</p>
-            {% endif %}
-            
-         </div>
-      </div>
-   </body>
-</html>
+{% block content %}
 
 
+        <!-- Page Title -->
+        <div class="page-title-area">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="title-content">
+                            <h2>Sign Up</h2>
+                            <ul>
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <span>Sign Up</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title -->
+
+        <!-- User Form -->
+        <div class="user-form-area ptb-100">
+            <div class="container">
+                <div class="form-item">
+                    <form>
+                        <h2>Sign Up</h2>
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="First Name">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Last Name">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Username">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password">
+                                </div>
+                            </div>
+
+                             <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn common-btn">
+                                    Sign Up
+                                    <span></span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="user-btn">
+                        <h3>Already have an account?<a href="{{ url_for('login') }}">Sign In</a></h3>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End User Form -->
 
 
+{% endblock %}
 
-
-
-
+{% include "footer.html" %}
