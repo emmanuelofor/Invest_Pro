@@ -27,10 +27,11 @@ def index():
     return render_template('index.html', current_user=current_user, faqs=faqs, testimonials=testimonials, investments=investments)
 
 @app.route('/list_investments')
-@login_required
+# @login_required
 def list_investments():
-    investments = Investment.query.all()
-    return render_template('list_investments.html', investments=investments)
+    # investments = Investment.query.all()
+    # return render_template('list_investments.html', investments=investments)
+    return render_template('list_investments.html')
 
 @app.route('/add_investment', methods=['GET', 'POST'])
 @login_required
@@ -56,13 +57,15 @@ def portfolio_tracking():
 
 @app.route('/opportunities')
 def opportunities():
-    opportunities = Opportunity.query.all()
-    return render_template('opportunities.html', opportunities=opportunities)
+    # opportunities = Opportunity.query.all()
+    # return render_template('opportunities.html', opportunities=opportunities)
+    return render_template('opportunities.html')
 
 @app.route('/contact')
 def contact():
-    contacts = Contact.query.all()
-    return render_template('contact.html', contacts=contacts)
+    # contacts = Contact.query.all()
+    # return render_template('contact.html', contacts=contacts)
+    return render_template('contact.html')
 
 @app.route('/submit_contact', methods=['POST'])
 def submit_contact():

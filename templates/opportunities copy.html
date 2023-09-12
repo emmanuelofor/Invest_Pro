@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Investment Opportunities</title>
+  <!-- your CSS and JS links -->
+</head>
+<body>
+
+  <!-- your header and navigation here -->
+
+  <h1>Investment Opportunities</h1>
+
+  <ul>
+    {% for opportunity in opportunities %}
+      <li>
+        Name: {{ opportunity.name }} <br>
+        Description: {{ opportunity.description }} <br>
+        Type: {{ opportunity.type }} <br>
+        Expected Return: {{ opportunity.expected_return }}% <br>
+        Risk Level: {{ opportunity.risk_level }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- your footer here -->
+
+</body>
+</html>

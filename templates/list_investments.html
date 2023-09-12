@@ -1,38 +1,119 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>InvestPro - List Investments</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
-</head>
-<body>
+{% include "header.html" %}
 
-    <h1>List of Investments</h1>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Investment Name</th>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for investment in investments %}
-                <tr>
-                    <td>{{ investment.name }}</td>
-                    <td>${{ investment.amount }}</td>
-                    <td>{{ investment.date }}</td>
-                    <td>
-                        <a href="{{ url_for('edit_investment', id=investment.id) }}">Edit</a> |
-                        <a href="{{ url_for('delete_investment', id=investment.id) }}">Delete</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+{% block content %}
 
-    <a href="{{ url_for('add_investment') }}">Add New Investment</a>
+        <!-- Page Title -->
+        <div class="page-title-area">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="title-content">
+                            <h2>Investment Details</h2>
+                            <ul>
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>
+                                    <span>Investment Details</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title -->
 
-</body>
-</html>
+        <!-- Services -->
+        <section class="services-area-two ptb-100">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="services-item-two">
+                            <div class="bottom">
+                                <h3>
+                                    <a href="service-details.html">Name</a>
+                                </h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo...</p>
+
+                                <p>2023-04-09</p>
+                                <div class="services-btn">
+                                    <i class='bx bx-right-arrow-alt'></i>
+                                    <a href="#">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-sm-6 col-lg-4">
+                        <div class="services-item-two">
+                            <div class="bottom">
+                                <h3>
+                                    <a href="service-details.html">Name</a>
+                                </h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo...</p>
+
+                                <p>2023-04-09</p>
+                                <div class="services-btn">
+                                    <i class='bx bx-right-arrow-alt'></i>
+                                    <a href="#">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-sm-6 col-lg-4">
+                        <div class="services-item-two">
+                            <div class="bottom">
+                                <h3>
+                                    <a href="service-details.html">Name</a>
+                                </h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo...</p>
+
+                                <p>2023-04-09</p>
+                                <div class="services-btn">
+                                    <i class='bx bx-right-arrow-alt'></i>
+                                    <a href="#">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-area">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class='bx bx-chevron-left'></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="active" href="#">
+                                1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class='bx bx-chevron-right'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- End Services -->
+
+
+{% endblock %}
+
+{% include "footer.html" %}
