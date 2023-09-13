@@ -1,3 +1,4 @@
+# Import required modules
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from datetime import datetime
@@ -5,6 +6,7 @@ from werkzeug.security import check_password_hash
 from database import db
 
 
+# User model with UserMixin for easier implementation of Flask-Login
 class User(UserMixin, db.Model):
     # Defining the table columns for the User model
     id = db.Column(db.Integer, primary_key=True)
@@ -17,6 +19,7 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)  # Checking the hashed password
 
+# Investment model for storing investment information
 class Investment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
@@ -27,12 +30,14 @@ class Investment(db.Model):
     date = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+# UserPortfolio model for linking users and their investments
 class UserPortfolio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     investment_id = db.Column(db.Integer, db.ForeignKey('investment.id'))
     amount = db.Column(db.Float)
 
+# Opportunity model for storing potential investment opportunities
 class Opportunity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
@@ -41,6 +46,7 @@ class Opportunity(db.Model):
     expected_return = db.Column(db.Float)
     risk_level = db.Column(db.String(64))
 
+# Contact model for storing contact inquiries
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
@@ -48,11 +54,13 @@ class Contact(db.Model):
     subject = db.Column(db.String(100), nullable=False)
     message = db.Column(db.String(1000), nullable=False)
 
+# FAQ model for storing frequently asked questions and answers
 class FAQ(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(500), nullable=False)
     answer = db.Column(db.String(1000), nullable=False)
 
+# Testimonial model for storing user testimonials
 class Testimonial(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(1000), nullable=False)

@@ -1,3 +1,4 @@
+# Import required modules
 from flask import Flask, render_template, request, redirect, url_for, abort
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -6,19 +7,24 @@ from database import db
 from models import User, Investment, UserPortfolio, FAQ, Testimonial, Opportunity, Contact
 from flask_migrate import Migrate
 
+# Initialize Flask app and configurations
 app = Flask(__name__)
 app.config.from_object(Configuration)
 
+# Initialize database and migration
 db.init_app(app)
 migrate = Migrate(app, db)
 
+# Initialize login manager
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
+# Load user for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# Home route
 @app.route('/')
 def index():
     faqs = FAQ.query.all()
@@ -26,6 +32,7 @@ def index():
     investments = Investment.query.all()
     return render_template('index.html', current_user=current_user, faqs=faqs, testimonials=testimonials, investments=investments)
 
+# List investments route
 @app.route('/list_investments')
 # @login_required
 def list_investments():
@@ -33,6 +40,7 @@ def list_investments():
     # return render_template('list_investments.html', investments=investments)
     return render_template('list_investments.html')
 
+# Add investment route
 @app.route('/add_investment', methods=['GET', 'POST'])
 @login_required
 def add_investment():
@@ -49,24 +57,29 @@ def add_investment():
 
     return render_template('add_investment.html')
 
+# Portfolio tracking route
 @app.route('/portfolio_tracking')
 @login_required
 def portfolio_tracking():
     user_portfolios = UserPortfolio.query.filter_by(user_id=current_user.id).all()
     return render_template('portfolio_tracking.html', portfolios=user_portfolios)
 
+# Opportunities route
 @app.route('/opportunities')
 def opportunities():
     # opportunities = Opportunity.query.all()
     # return render_template('opportunities.html', opportunities=opportunities)
     return render_template('opportunities.html')
 
+# Contact route
 @app.route('/contact')
 def contact():
     # contacts = Contact.query.all()
     # return render_template('contact.html', contacts=contacts)
     return render_template('contact.html')
 
+
+# Submit contact route
 @app.route('/submit_contact', methods=['POST'])
 def submit_contact():
     if request.method == 'POST':
@@ -84,6 +97,7 @@ def submit_contact():
 
     return redirect(url_for('contact'))
 
+# Signup route
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -112,6 +126,7 @@ def signup():
 
     return render_template('signup.html')
 
+# Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -131,12 +146,14 @@ def login():
 
     return render_template('login.html')
 
+# Logout route
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
+# Run the application
 if __name__ == '__main__':
     app.run(debug=True)
 
