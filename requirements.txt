@@ -5,6 +5,7 @@ Flask-WTF
 Flask-Mail
 itsdangerous
 Jinja2
+python-dotenv
 MarkupSafe
 SQLAlchemy
 Werkzeug

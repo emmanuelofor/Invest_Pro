@@ -1,27 +1,36 @@
-{% extends "index.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InvestPro - Add Investment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+</head>
+<body>
 
-{% block content %}
-<h2>Add New Investment</h2>
+    <h1>Add a New Investment</h1>
 
-<form action="/add_investment" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
-    <br>
-    
-    <label for="type">Type:</label>
-    <input type="text" id="type" name="type">
-    <br>
+    <form action="{{ url_for('add_investment') }}" method="post">
+        <div class="input-field">
+            <label for="name">Investment Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
 
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description">
-    <br>
+        <div class="input-field">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+        </div>
 
-    <label for="risk_level">Risk Level:</label>
-    <input type="text" id="risk_level" name="risk_level">
-    <br>
+        <div class="input-field">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
 
-    <input type="submit" value="Add Investment">
-</form>
+        <div class="btn-field">
+            <button class="btn" type="submit">Add Investment</button>
+        </div>
+    </form>
 
-{% endblock %}
+    <a href="{{ url_for('list_investments') }}">Back to Investment List</a>
+
+</body>
+</html>
 
