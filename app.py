@@ -1,5 +1,5 @@
 # Import required modules
-from flask import Flask, render_template, request, redirect, url_for, abort
+from flask import Flask, render_template, request, redirect, url_for, abort, flash
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import Configuration
@@ -107,42 +107,49 @@ def signup():
         confirm_password = request.form['confirm_password']
 
         if not email or not password or not username:
-            return render_template('signup.html', error='All fields are required.')
+            flash('All fields are required.')
+            return redirect(url_for('signup'))
 
         if password != confirm_password:
-            return render_template('signup.html', error='Passwords do not match')
+            flash('Passwords do not match')
+            return redirect(url_for('signup'))
 
         user = User.query.filter_by(email=email).first()
         if user:
-            return render_template('signup.html', error='Email already exists')
+            flash('Email already exists')
+            return redirect(url_for('signup'))
 
-        hashed_password = generate_password_hash(password)
-        user = User(username=username, email=email, password_hash=hashed_password)
+        hashed_password = generate_password_hash(password, method='sha256')
+        
+        # assuming User model accepts hashed_password
+        new_user = User(username=username, email=email, password_hash=hashed_password)
 
-        db.session.add(user)
-        db.session.commit()
-
-        return render_template('login.html', message='Sign up successful! Please log in.')
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Sign up successful! Please log in.')
+            return redirect(url_for('login'))
+        except:
+            flash('Could not add new user')
+            return redirect(url_for('signup'))
 
     return render_template('signup.html')
 
-# Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        print(f"Email: {email}, Password: {password}")  # Debug print
         
         user = User.query.filter_by(email=email).first()
-        print(f"User found: {user is not None}")  # Debug print
 
         if user and user.check_password(password):
-            print("Logging in user")  # Debug print
             login_user(user)
+            flash('Logged in successfully.')
             return redirect(url_for('index'))
         else:
-            return render_template('login.html', error='Invalid email or password')
+            flash('Invalid email or password')
+            return redirect(url_for('login'))
 
     return render_template('login.html')
 
