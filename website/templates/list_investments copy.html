@@ -24,15 +24,15 @@
                     <td>${{ investment.amount }}</td>
                     <td>{{ investment.date }}</td>
                     <td>
-                        <a href="{{ url_for('edit_investment', id=investment.id) }}">Edit</a> |
-                        <a href="{{ url_for('delete_investment', id=investment.id) }}">Delete</a>
+                        <a href="{{ url_for('views.edit_investment', id=investment.id) }}">Edit</a> |
+                        <a href="{{ url_for('views.delete_investment', id=investment.id) }}">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ url_for('add_investment') }}">Add New Investment</a>
+    <a href="{{ url_for('views.add_investment') }}">Add New Investment</a>
 
 </body>
 </html>

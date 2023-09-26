@@ -1,0 +1,78 @@
+{% include "header.html" %}
+
+{% block content %}
+<!-- Page Title -->
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-content">
+                    <h2>Sign In</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <span>Sign In</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<!-- Flash Messages -->
+<div class="container ">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      
+        <ul class="text-center">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {% endwith %}
+</div>
+
+
+<!-- User Form -->
+<div class="user-form-area ptb-100">
+    <div class="container">
+        <div class="form-item">
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                <h2>Sign In</h2>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <input type="text" name="username" class="form-control" placeholder="Email / Username" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn common-btn">
+                            Sign In
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="user-btn">
+                <h3>Don't have an account? <a href="{{ url_for('auth.signup') }}">Sign Up</a></h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End User Form -->
+{% endblock %}
+
+{% include "footer.html" %}
