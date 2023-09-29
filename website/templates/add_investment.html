@@ -8,7 +8,7 @@
 
     <h1>Add a New Investment</h1>
 
-    <form action="{{ url_for('add_investment') }}" method="post">
+    <form action="{{ url_for('views.add_investment') }}" method="post">
         <div class="input-field">
             <label for="name">Investment Name:</label>
             <input type="text" id="name" name="name" required>
@@ -29,7 +29,7 @@
         </div>
     </form>
 
-    <a href="{{ url_for('list_investments') }}">Back to Investment List</a>
+    <a href="{{ url_for('views.list_investments') }}">Back to Investment List</a>
 
 </body>
 </html>

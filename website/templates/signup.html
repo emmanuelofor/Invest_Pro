@@ -24,48 +24,67 @@
             </div>
         </div>
         <!-- End Page Title -->
+        <!-- Flash Messages -->
+        <div class="container ">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              
+                <ul class="text-center">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            {% endwith %}
+        </div>
+        
+
+    
 
         <!-- User Form -->
         <div class="user-form-area ptb-100">
             <div class="container">
                 <div class="form-item">
-                    <form>
+                    <form method="POST" action="{{ url_for('auth.signup') }}">
                         <h2>Sign Up</h2>
                         <div class="row">
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="First Name">
+                                    <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Last Name">
+                                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" required>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Username">
+                                    <input type="text" class="form-control" name="username" placeholder="Username" required>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input type="email" class="form-control" name="email" placeholder="Email" required>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" name="password" placeholder="Password" required>
                                 </div>
                             </div>
 
                              <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                    <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
                                 </div>
                             </div>
 
@@ -79,7 +98,7 @@
                         </div>
                     </form>
                     <div class="user-btn">
-                        <h3>Already have an account?<a href="{{ url_for('login') }}">Sign In</a></h3>
+                        <h3>Already have an account?<a href="{{ url_for('auth.login') }}">Sign In</a></h3>
                        
                     </div>
                 </div>

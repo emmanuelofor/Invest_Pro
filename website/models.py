@@ -2,22 +2,26 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from datetime import datetime
-from werkzeug.security import check_password_hash  
-from database import db
+from werkzeug.security import check_password_hash
+from . import db
 
 
-# User model with UserMixin for easier implementation of Flask-Login
-class User(UserMixin, db.Model):
-    # Defining the table columns for the User model
+from sqlalchemy.sql import func
+
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(80), unique=True, nullable=False)
-    password_hash = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(150), unique=True)
+    password = db.Column(db.String(150))
+    username = db.Column(db.String(150))
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
-    date_of_birth = db.Column(db.Date, nullable=False)
+    date_of_birth = db.Column(db.Date, default=datetime.utcnow)
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)  # Checking the hashed password
+        # Checking the hashed password
+        return check_password_hash(self.password_hash, password)
+
 
 # Investment model for storing investment information
 class Investment(db.Model):
@@ -30,12 +34,14 @@ class Investment(db.Model):
     date = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+
 # UserPortfolio model for linking users and their investments
 class UserPortfolio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     investment_id = db.Column(db.Integer, db.ForeignKey('investment.id'))
     amount = db.Column(db.Float)
+
 
 # Opportunity model for storing potential investment opportunities
 class Opportunity(db.Model):
@@ -46,6 +52,7 @@ class Opportunity(db.Model):
     expected_return = db.Column(db.Float)
     risk_level = db.Column(db.String(64))
 
+
 # Contact model for storing contact inquiries
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -54,15 +61,18 @@ class Contact(db.Model):
     subject = db.Column(db.String(100), nullable=False)
     message = db.Column(db.String(1000), nullable=False)
 
+
 # FAQ model for storing frequently asked questions and answers
 class FAQ(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(500), nullable=False)
     answer = db.Column(db.String(1000), nullable=False)
 
+
 # Testimonial model for storing user testimonials
 class Testimonial(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(1000), nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date_posted = db.Column(db.DateTime, nullable=False,
+                            default=datetime.utcnow)
