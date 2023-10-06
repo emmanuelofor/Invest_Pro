@@ -7,7 +7,7 @@
 
 `InvestPro` is an online investment platform designed to empower individuals to make informed investment decisions and achieve their financial goals. The platform provides a user-friendly interface and a range of features to assist investors in researching, planning, and managing their investments effectively. InvestPro caters to both novice investors seeking guidance and experienced investors looking for advanced analysis tools.
 
-InvestPro aims to be a reliable partner in the financial journey of individual investors, providing them with the tools and insights needed to make well-informed investment decisions and work towards financial success.
+InvestPro aims to be a reliable partner in the financial journey of individual investors, providing them with the tools and insights needed to make well-informed investment decisions and work towards financial success. The website will provide reliable financial education to everyone all over the world
 
 Welcome to [InvestPro](https://investpro.onrender.com/#)
 
